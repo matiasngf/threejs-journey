@@ -21,6 +21,10 @@ const doorHeightTexture = textureLoader.load('/textures/door/height.jpg')
 const doorAmbientOcclusionTexture = textureLoader.load('/textures/door/ambientOcclusion.jpg')
 const doorRoughnessTexture = textureLoader.load('/textures/door/roughness.jpg')
 
+// Example wrap
+doorColorTexture.wrapS = THREE.RepeatWrapping
+doorColorTexture.wrapT = THREE.RepeatWrapping
+
 loadingManager.onLoad = () => {
     console.log('ALL LOADED');
 }
@@ -39,7 +43,8 @@ const scene = new THREE.Scene()
  */
 const geometry = new THREE.BoxGeometry(1, 1, 1)
 const material = new THREE.MeshBasicMaterial({
-    map: doorColorTexture
+    map: doorColorTexture,
+    alphaMap: doorAlphaTexture,
 })
 const mesh = new THREE.Mesh(geometry, material)
 scene.add(mesh)
